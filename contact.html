@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PORTFOLIO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style-contact.css">
+    <script type="text/javascript" src="jquery-3.3.1.js">
+
+
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <!---------------nav javascript------------->
+        <nav>
+            <a id="resp-menu" class="responsive-menu" href="#"><i class="menu-s"><img src="img/menu.png" alt="menu"></i> </a>
+            <ul class="menu">
+                <li><a class="accueil" href="index.html"><i class="accueil-s"></i> QUI SUIS-JE?</a>
+
+                </li>
+                <li><a href="#"><i class="presentetion"></i> FORMATION</a></li>
+                <li><a href="#"><i class="blog"></i> EXPERIENCE</a></li>
+                <li><a href="#"><i class="produit"></i> PORTFOLIO</a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Graphiste</a></li>
+                        <li><a href="#">Webdesigner</a></li>
+                        <li><a href="#">Photo/vidéo</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="contact.html"><i class="contact"></i> CONTACT</a></li>
+            </ul>
+        </nav>
+        <script>
+            $(document).ready(function() {
+                var touch = $('#resp-menu');
+                var menu = $('.menu');
+
+                $(touch).on('click', function(e) {
+                    e.preventDefault();
+                    menu.slideToggle();
+                });
+
+                $(window).resize(function() {
+                    var w = $(window).width();
+                    if (w > 767 && menu.is(':hidden')) {
+                        menu.removeAttr('style');
+                    }
+                });
+
+            });
+
+        </script>
+        <!------------------------------------------->
+    </header>
+   
+         <div class="authors ">
+            <p><a href="#">Contact </a></p>
+        </div>
+    <div id="page">
+    
+   <!--------------contact--------------->
+    <div class="card">
+            <div class="photo">
+                
+            </div>
+            <div class="banner">
+                <img src="" alt="">
+            </div>
+            <ul>
+                <li><b>Nadia MADADI</b></li>
+                <li>Graphiste / Webdesigner</li>
+
+            </ul>
+            <button class="contact" id="main-button">Entrer</button>
+            <div class="social-media-banner">
+                <a href=""><i class="fa fa-twitter"></i></a>
+                <a href=""><i class="fa fa-facebook"></i></a>
+                <a href=""><i class="fa fa-instagram"></i></a>
+                <a href=""><i class="fa fa-linkedin"></i></a>
+            </div>
+          <form class="email-form">
+                <input id="name" type="text" placeholder="nom">
+                <input id="email" type="text" placeholder="email">
+                <textarea id="comment" type="text" placeholder="commentaire"></textarea>
+                <button class="contact">Envoyer</button>
+          </form>
+          </div>
+           <!--------------contact javascript--------------->
+           <script>$(document).ready(function()
+{
+    $('.contact').click(function (e) 
+    {
+        $('.card').toggleClass('active');
+        $('.banner').toggleClass('active');
+        $('.photo').toggleClass('active');
+        $('.social-media-banner').toggleClass('active');
+        $('.email-form').toggleClass('active');  
+        var buttonText = $('button.contact#main-button').text();
+        if (buttonText === 'back')
+        {
+            buttonText = 'clicker';
+            $('button.contact#main-button').text(buttonText);
+        }
+        else
+        {
+            buttonText = 'entrer';
+            $('button.contact#main-button').text(buttonText);
+        }
+    });
+});
+//turn on to make the photo follow mouse
+// $(document).ready(function()
+// {
+//     $(document).mousemove(function( event ) 
+//     {
+//         var docWidth = $(document).width();
+//         var docHeight = $(document).height();
+//         var xValue = (event.clientX/docWidth)*100;
+//         var yValue = (event.clientY/docHeight)*100;
+//         $('.photo').css('background-position', xValue+'%,'+yValue+'%');
+//     });
+// });</script>
+            <!----------------------------->
+    </div>
+       <div>
+           <p>&nbsp; <br> <br></p>
+       </div>
+        <footer class="footer">
+        <p>© 2018 | CHROMATICity by Nadia MADADI | Book </p>
+    </footer>
+    </body>

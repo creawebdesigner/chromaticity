@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PORTFOLIO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+
+    <script type="text/javascript" src="jquery-3.3.1.js">
+
+
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <!---------------nav javascript------------->
+        <nav>
+            <a id="resp-menu" class="responsive-menu" href="#"><i class="menu-s"><img src="img/menu.png" alt="menu"></i> </a>
+            <ul class="menu">
+                <li><a class="accueil" href="index.html"><i class="accueil-s"></i> QUI SUIS-JE?</a>
+
+                </li>
+                <li><a href="#"><i class="presentetion"></i> FORMATION</a></li>
+                <li><a href="#"><i class="blog"></i> EXPERIENCE</a></li>
+                <li><a href="#"><i class="produit"></i> PORTFOLIO</a>
+                    <ul class="sub-menu">
+                        <li><a href="graphiste.html">Graphiste</a></li>
+                        <li><a href="webdesigner.html">Webdesigner</a></li>
+                        <li><a href="photo.html">Photo/vidéo</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="contact.html"><i class="contact"></i> CONTACT</a></li>
+            </ul>
+        </nav>
+        <script>
+            $(document).ready(function() {
+                var touch = $('#resp-menu');
+                var menu = $('.menu');
+
+                $(touch).on('click', function(e) {
+                    e.preventDefault();
+                    menu.slideToggle();
+                });
+
+                $(window).resize(function() {
+                    var w = $(window).width();
+                    if (w > 767 && menu.is(':hidden')) {
+                        menu.removeAttr('style');
+                    }
+                });
+
+            });
+
+        </script>
+        <!------------------------------------------->
+    </header>
+
+    <div id="page">
+        <div>
+            <p>&nbsp;</p>
+
+            <img src="img/font-logo3.png" alt="font" width="100%" class="font3">
+            <img src="img/font-logo2.png" alt="font" width="100%" class="font2">
+        </div>
+        <div class="authors ">
+           
+
+
+
+        <div><a href="http://nadia.alwaysdata.net/slider/"> cv : "http://nadia.alwaysdata.net/slider/"</a></div>
+          <div><p>&nbsp;</p></div>
+           <div><a href="http://nadia.alwaysdata.net/horizon-telecom/"> Horizon telecom : "http://nadia.alwaysdata.net/horizon-telecom/"</a></div>
+           <div><p>&nbsp;</p></div>
+           
+           
+        <div class="mention">
+          
+         <p1>Vous avez une question ou un projet à me confier? <br>N'hésitez pas à me contacter !</p1>
+        </div>
+
+
+    <footer class="footer">
+        <p>© 2018 | CHROMATICity by Nadia MADADI | Book </p>
+    </footer>
+</div></div>
+</body>
+
+</html>

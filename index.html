@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PORTFOLIO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+
+    <script type="text/javascript" src="jquery-3.3.1.js">
+
+
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <!---------------nav javascript------------->
+        <nav>
+            <a id="resp-menu" class="responsive-menu" href="#"><i class="menu-s"><img src="img/menu.png" alt="menu"></i> </a>
+            <ul class="menu">
+                <li><a class="accueil" href="index.html"><i class="accueil-s"></i> QUI SUIS-JE?</a>
+
+                </li>
+                <li><a href="#"><i class="presentetion"></i> FORMATION</a></li>
+                <li><a href="#"><i class="blog"></i> EXPERIENCE</a></li>
+                <li><a href="#"><i class="produit"></i> PORTFOLIO</a>
+                    <ul class="sub-menu">
+                        <li><a href="graphiste.html">Graphiste</a></li>
+                        <li><a href="webdesigner.html">Webdesigner</a></li>
+                        <li><a href="photo.html">Photo/vidéo</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="contact.html"><i class="contact"></i> CONTACT</a></li>
+            </ul>
+        </nav>
+        <script>
+            $(document).ready(function() {
+                var touch = $('#resp-menu');
+                var menu = $('.menu');
+
+                $(touch).on('click', function(e) {
+                    e.preventDefault();
+                    menu.slideToggle();
+                });
+
+                $(window).resize(function() {
+                    var w = $(window).width();
+                    if (w > 767 && menu.is(':hidden')) {
+                        menu.removeAttr('style');
+                    }
+                });
+
+            });
+
+        </script>
+        <!------------------------------------------->
+    </header>
+
+    
+        <div>
+            <p>&nbsp;</p>
+
+            <img src="img/font-logo3.png" alt="font" width="100%" class="font3">
+            <img src="img/font-logo2.png" alt="font" width="100%" class="font2">
+        </div>
+       
+         <div id="popup1">
+       <!-- ==============popup javascript ========-->
+       <link href="https://fonts.googleapis.com/css?family=jura" rel="stylesheet">
+<div class="popups-cont">
+  <div class="popups-cont__overlay"></div>
+  <div class="popup">
+    <div class="popup__pieces"></div>
+    <div class="popup__content">
+      <div class="popup__close"></div>
+      <h3 class="popup__heading">QUI SUIS-JE ?</h3>
+      <p class="popup__text">Une femme passionné par le graphisme et les professions artistiques, après un C.A.P. ( sérigraphie ) et un C.A.P. ( graphiste décorateur ) et deux ans d’études de graphisme en B.A.C. professionnel ( communication graphique ), j’ai complété mes compétences avec une formation de webdesigner en étudiant 8 mois au l 'A.F.P.A. du pontet de niveau III et en travaillant sur des projets personnels et missions freelance.</p>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="popup-btn">QUI SUIS-JE? </button>
+    <script>// js only creates and insert parts + click events adds classes
+
+var numOfPieces = 6 * 6;
+
+var frag = document.createDocumentFragment();
+
+function insertInnerPieces($el, innerPieces) {
+  for (var i = 0; i < innerPieces; i++) {
+    var $inner = document.createElement('div');
+    $inner.classList.add('popup__piece-inner');
+    $el.appendChild($inner);
+  }
+};
+
+for (var i = 1; i <= numOfPieces; i++) {
+  var $piece = document.createElement('div');
+  $piece.classList.add('popup__piece');
+  
+  insertInnerPieces($piece, 3);
+  frag.appendChild($piece);
+}
+
+document.querySelector('.popup__pieces').appendChild(frag);
+
+var $popupsCont = document.querySelector('.popups-cont');
+var $popup = document.querySelector('.popup');
+var popupAT = 900;
+
+document.querySelector('.popup-btn').addEventListener('click', function() {
+  $popupsCont.classList.add('s--popup-active');
+  $popup.classList.add('s--active');
+});
+
+function closeHandler() {
+  $popupsCont.classList.remove('s--popup-active');
+  $popup.classList.remove('s--active');
+  $popup.classList.add('s--closed');
+  
+  setTimeout(function() {
+    $popup.classList.remove('s--closed');
+  }, popupAT);
+}
+
+document.querySelector('.popup__close').addEventListener('click', closeHandler);
+
+document.querySelector('.popups-cont__overlay').addEventListener('click', closeHandler);</script>
+    </div>
+      
+<div id="page">
+        <!-- ==============Slider javascript ========-->
+        <script>
+            $(function() {
+                var SliderModule = (function() {
+                    var pb = {};
+                    pb.el = $('#slider');
+                    pb.items = {
+                        panels: pb.el.find('.slider-wrapper > li'),
+                    }
+
+                    // Interval del Slider
+                    var SliderInterval,
+                        currentSlider = 0,
+                        nextSlider = 1,
+                        lengthSlider = pb.items.panels.length;
+
+                    // Constructor del Slider
+                    pb.init = function(settings) {
+                        this.settings = settings || {
+                            duration: 8000
+                        };
+                        var items = this.items,
+                            lengthPanels = items.panels.length,
+                            output = '';
+
+                        // Insertamos nuestros botones
+                        for (var i = 0; i < lengthPanels; i++) {
+                            if (i == 0) {
+                                output += '<li class="active"></li>';
+                            } else {
+                                output += '<li></li>';
+                            }
+                        }
+
+                        $('#control-buttons').html(output);
+
+                        // Activamos nuestro Slider
+                        activateSlider();
+                        // Eventos para los controles
+                        $('#control-buttons').on('click', 'li', function(e) {
+                            var $this = $(this);
+                            if (!(currentSlider === $this.index())) {
+                                changePanel($this.index());
+                            }
+                        });
+
+                    }
+
+                    // Funcion para activar el Slider
+                    var activateSlider = function() {
+                        SliderInterval = setInterval(pb.startSlider, pb.settings.duration);
+                    }
+
+                    // Funcion para la Animacion
+                    pb.startSlider = function() {
+                        var items = pb.items,
+                            controls = $('#control-buttons li');
+                        // Comprobamos si es el ultimo panel para reiniciar el conteo
+                        if (nextSlider >= lengthSlider) {
+                            nextSlider = 0;
+                            currentSlider = lengthSlider - 1;
+                        }
+
+                        controls.removeClass('active').eq(nextSlider).addClass('active');
+                        items.panels.eq(currentSlider).fadeOut('slow');
+                        items.panels.eq(nextSlider).fadeIn('slow');
+
+                        // Actualizamos los datos del slider
+                        currentSlider = nextSlider;
+                        nextSlider += 1;
+                    }
+
+                    // Funcion para Cambiar de Panel con Los Controles
+                    var changePanel = function(id) {
+                        clearInterval(SliderInterval);
+                        var items = pb.items,
+                            controls = $('#control-buttons li');
+                        // Comprobamos si el ID esta disponible entre los paneles
+                        if (id >= lengthSlider) {
+                            id = 0;
+                        } else if (id < 0) {
+                            id = lengthSlider - 1;
+                        }
+
+                        controls.removeClass('active').eq(id).addClass('active');
+                        items.panels.eq(currentSlider).fadeOut('slow');
+                        items.panels.eq(id).fadeIn('slow');
+
+                        // Volvemos a actualizar los datos del slider
+                        currentSlider = id;
+                        nextSlider = id + 1;
+                        // Reactivamos nuestro slider
+                        activateSlider();
+                    }
+
+                    return pb;
+                }());
+
+                SliderModule.init({
+                    duration: 4000
+                });
+
+            })
+
+        </script>
+
+
+        <section id="slider" class="container">
+            <ul class="slider-wrapper">
+                <li class="current-slide">
+                    <img src="img/slider1.png" title="" alt="">
+
+                    <div class="caption">
+                        <h2 class="slider-title">Photographe Portrait</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, placeat est. Alias illo hic quo nobis, aspernatur iste ut voluptate.</p>
+                    </div>
+                </li>
+
+                <li>
+                    <img src="img/slider2.png" title="" alt="">
+
+                    <div class="caption">
+                        <h2 class="slider-title">Portrait solo</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo iusto placeat aliquid tempore harum, similique!</p>
+                    </div>
+                </li>
+
+                <li>
+                    <img src="img/slider3.png" title="" alt="">
+
+                    <div class="caption">
+                        <h2 class="slider-title">Communication d'entreprise</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos dicta laudantium voluptatem minima! Dolorum tempore dolores excepturi omnis provident. Commodi quis aperiam maiores, dolore a perferendis!</p>
+                    </div>
+                </li>
+
+                <li>
+                    <img src="img/slider4.png" title="" alt="">
+
+                    <div class="caption">
+                        <h2 class="slider-title">Produits/Publicité</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolore dignissimos laudantium.</p>
+                    </div>
+                </li>
+            </ul>
+            <!-- Sombras -->
+            <div class="slider-shadow"></div>
+
+            <!-- Controle de Navigation -->
+            <ul id="control-buttons" class="control-buttons"></ul>
+        </section>
+        <!-- ==============Slider ========-->
+
+        <section class="lien">
+
+            <a href="#"><img src="img/lien3.png" alt="Compétences" height="120px"><br>Compétences</a>
+
+
+            <a href="#"><img src="img/lien1.png" alt="Expériences" height="120px"><br>Expériences</a>
+
+            <a href="#"><img src="img/lien2.png" alt="formation" height="120px"><br>formation</a>
+
+        </section>
+
+        <section>
+
+
+            <article class="para">
+
+                <h2 class="authors">
+                    <img src="img/competence.png" width="30px" alt="">Compétences</h2>
+                <div class="para">
+                    <p>Je suis créative, rigoureuse, dynamique, bonne capacité à travailler en équipe avec des larges connaissances en Graphisme et le web. <br><br> Logiciels: Illustrator, Photoshop, Indesign, Première pro (montage vidéo), Web(création de site internet, html, css, javascript, figma, wordpress...).
+                    </p>
+                </div>
+            </article>
+            <article class="para">
+                <h2 class="authors"><img src="img/work.png" width="20px" alt="">Expériences</h2>
+
+                <div class="para">
+                    <p> <span>* Photographe:</span> Prises de vue, Retouche photo, Réalisation de Livre album, Tirage photo <br> <span>* Caméraman:</span> Vidéo mariage, Prises de vue, Montage vidéo. <br> <span>* Infographiste: </span>Création graphic (affiches, flyers, logos, images,etc.) Impression numérique sur textile <br> Sérigraphe:Impression textil <br><br> Entreprises: Sudlabo(Avignon), Sérigraphie FOUQUE(Sorgue), Etoiles impression(Alés). <br><br> <span>STAGE:</span> Réalisation des enseignes et panneaux publicitaires - Imprimeur offset - sérigraphe<br><br> Entreprise : PUBLI Déco(30), Impact Impression(30), Imprimerie Boutin(30), MAN Sérigraphie(30)
+
+                    </p>
+                </div>
+            </article>
+            <article class="para">
+
+                <h2 class="authors"><img src="img/formation.png" width="20px" alt="">Formation</h2>
+                <div class="para">
+                    <p>
+                        <span>2018</span> Formation Webdesigner - Pontet (84) <br> <span>2012</span> Formation Vidéo - école IMCA en Avignon <br> <span>2012</span> Formation Photographe - école API à Volx <br> <span>2004</span> Formation PAO : Graphisme, Illustration, Designe - Atelier Profile - Alès <br> <span>2003</span> B.A.C. Pro. Communication Graphique - lycée J. F. Champollion - Montpellier <br> <span>2001</span> C.A.P. Graphiste Décorateur et Sérigraphie Industriel - lycée F. Mistral à Nîmes
+                    </p><br><br>
+
+                    <a href="img/CV.jpg" class="pdf"><img src="img/pdf1.svg" alt="cv" width="50px" >Mon C.V.</a>
+                </div>
+            </article>
+        </section>
+        <div class="mention">
+            <p1>Vous avez une question ou un projet à me confier? <br>N'hésitez pas à me contacter !</p1>
+        </div>
+    </div>
+   
+
+    <footer class="footer">
+        <p>© 2018 | CHROMATICity by Nadia MADADI | Book </p>
+    </footer>
+
+</body>
+
+</html>
